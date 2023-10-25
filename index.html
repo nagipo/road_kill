@@ -11,46 +11,70 @@
    
 
     <style>
+        body{
+            background-color: antiquewhite;
+            display: flex
+        }
         .fixed-top>div {
             display: inline-block;
         }
-
-        .fixed-top>div:hover>a span {
-            color: rgb(212, 186, 16);
+        #navbarNav>ul>li:hover{
+            background-color: rgb(212, 186, 16);
         }
+        
     </style>
 </head>
 
 <body>
-    <div class="container ">
+    <div class="container " >
+        <div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">登入</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="key_acount">帳號</label>
+                    <input name="key_acount" type="text"><br><br>
+                    <label for="key_password">密碼</label>
+                    <input name="key_password" type="text">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
         <div class=" row fixed-top" style="background-image:url(./image/header_bg.jpg) ;">
             <div class="d-flex justify-content-center col-12">
                 <div>
                     <a href="" class="text-decoration-none text-light text-center">
                         <span class="h1 d-block ">陸域野生動物目擊回報</span>
-                        <span class="small d-block  ">Taiwan Roadkill Observation Network</span>
-    
+                        
                     </a>
     
                 </div>
-                <div class="align-self-center ms-3">
+                <div class="align-self-center ms-5">
                     <input type="text"  placeholder="搜尋" class="form-control">
 
                 </div>
-                <button class="btn btn-dark ms-2 align-self-center" style="height: 35px;">ENGLISH</button>
-                
+                <button  class="btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
+                <a href="" class="btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
+                <button style="height: 35px;width: 35px;" class="navbar-toggler ms-3 ms-md-5  align-self-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span ><img src="./image/list_grey.svg " style="height: 35px;width: 35px;"></span>
+                </button>
                 
             </div>
             <div class="container">
                
                 <nav class="navbar navbar-expand-lg navbar-dark pb-0">
                     <div class="container-fluid p-0">
-                        <div class="navbar-brand"></div>
-                        <button style="position: relative; top:-60px;" class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
                         
-                            <div class="collapse navbar-collapse m-0 navbar-brand" id="navbarNav">
+                        
+                        
+                            <div class="collapse navbar-collapse m-0 pb-0 navbar-brand" id="navbarNav">
                                 <ul class="navbar-nav bg-warning  justify-content-center col-12" >
                                     <li class="nav-item"><a href="" class="nav-link " style="color:black ;">上傳</a></li>
                                     <li class="nav-item"><a href="" class="nav-link" style="color:black ;">鑑定</a></li>
@@ -70,6 +94,39 @@
            
            
         </div>
+
+        <div style="height: 100px;"></div>
+
+        <div class="mt-5 w-75">
+
+            <div id="carouselExampleIndicators" class="carousel slide Width 75%" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="./image/01.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="./image/02.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="./image/03.jpg" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
