@@ -48,6 +48,7 @@
             </div>
           </div>
         <div class=" row fixed-top" style="background-image:url(./image/header_bg.jpg) ;">
+          
             <div class="d-flex justify-content-center col-12">
                 <div>
                     <a href="./index.html" class="text-decoration-none text-light text-center">
@@ -60,8 +61,11 @@
                     <input type="text"  placeholder="搜尋" class="form-control">
 
                 </div>
-                <button  class="btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
-                <a href="./sign_up.html" class="btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
+                <button hidden id="go_log_out" class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px"  >登出</button>
+                <a href="" hidden class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" >關於我</a>
+
+                <button  class="unlogging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
+                <a href="./sign_up.html" class="unlogging btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
                 <button style="height: 35px;width: 35px;" class="navbar-toggler ms-3 ms-md-5  align-self-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                   <span ><img src="./image/list_grey.svg " style="height: 35px;width: 35px;"></span>
                 </button>
@@ -157,16 +161,43 @@
     src="https://code.jquery.com/jquery-3.7.1.js"
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
-
+    
+    <script src="./account.js"></script>
     <script>
+      
+      if(sessionStorage.getItem('login_account')!=null){
+        $('.unlogging').prop('hidden',true)
+        $('.logging').prop('hidden',false)
+      }
+
+      
+
       $('#go_sign_in').on('click',function(){
-        let data_to_server={
-          // 'account':$('#account').val(),
-          // 'password':$('#password').val()
-          
-        }
-        var a={}
-        alert (a)
+        let ac_input={
+           'account':$('#account').val(),
+           'password':$('#password').val()
+           }
+          console.log(ac_input.account)
+          console.log(ac_p[1].account)
+          for (let i = 0; i < ac_p.length; i++) {
+            if(ac_input.account==ac_p[i].account){
+              if(ac_input.password==ac_p[i].password){
+                alert('ok');
+                sessionStorage.setItem('login_account',ac_input.account);
+                location.reload();
+              } else {alert('密碼錯誤'); break}
+            }else if(ac_input.password!=ac_p[i].password &&i==ac_p.length-1){alert('無此帳號')}
+            
+          }
+        
+        
+      })
+
+      $('#go_log_out').on('click',function(){
+        // sessionStorage.setItem('login_account',null);
+        sessionStorage.clear();
+        location.reload();
+        
       })
     </script>
 </body>
