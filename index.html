@@ -26,23 +26,23 @@
 </head>
 
 <body>
-    <div class="container " >
+    <div class="container-fluid px-0" >
         <div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">登入</h5>
+                  <h5 class="modal-title" id="sign_in">登入</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="key_acount">帳號</label>
-                    <input name="key_acount" type="text"><br><br>
-                    <label for="key_password">密碼</label>
-                    <input name="key_password" type="text">
+                    <label for="key_acount">帳號:</label>
+                    <input name="key_acount" id='account' type="text"><br><br>
+                    <label for="key_password" >密碼:</label>
+                    <input name="key_password" id="password" type="text">
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <a  href="./forget_password.html" type="button" class="btn btn-secondary" >忘記密碼</a>
+                  <button type="button" class="btn btn-warning" id="go_sign_in">確定</button>
                 </div>
               </div>
             </div>
@@ -50,7 +50,7 @@
         <div class=" row fixed-top" style="background-image:url(./image/header_bg.jpg) ;">
             <div class="d-flex justify-content-center col-12">
                 <div>
-                    <a href="" class="text-decoration-none text-light text-center">
+                    <a href="./index.html" class="text-decoration-none text-light text-center">
                         <span class="h1 d-block ">陸域野生動物目擊回報</span>
                         
                     </a>
@@ -61,7 +61,7 @@
 
                 </div>
                 <button  class="btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
-                <a href="" class="btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
+                <a href="./sign_up.html" class="btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
                 <button style="height: 35px;width: 35px;" class="navbar-toggler ms-3 ms-md-5  align-self-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                   <span ><img src="./image/list_grey.svg " style="height: 35px;width: 35px;"></span>
                 </button>
@@ -76,13 +76,13 @@
                         
                             <div class="collapse navbar-collapse m-0 pb-0 navbar-brand" id="navbarNav">
                                 <ul class="navbar-nav bg-warning  justify-content-center col-12" >
-                                    <li class="nav-item"><a href="" class="nav-link " style="color:black ;">上傳</a></li>
-                                    <li class="nav-item"><a href="" class="nav-link" style="color:black ;">鑑定</a></li>
-                                    <li class="nav-item"><a href="" class="nav-link" style="color:black ;">物種鑑定測驗</a></li>
-                                    <li class="nav-item"><a href="" class="nav-link" style="color:black ;">系統化同步調查</a></li>
-                                    <li class="nav-item"><a href="" class="nav-link" style="color:black ;">社區調查</a></li>
-                                    <li class="nav-item"><a href="" class="nav-link" style="color:black ;">路殺社資料庫</a></li>
-                                    <li class="nav-item"><a href="" class="nav-link" style="color:black ;">訊息專區</a></li>
+                                    <li class="nav-item"><a href="./upload.html" class="nav-link " style="color:black ;">目擊目擊回報</a></li>
+                                    <li class="nav-item"><a href="./identification.html" class="nav-link" style="color:black ;">物種鑑定</a></li>
+                                    <li class="nav-item"><a href="./identification_test.html" class="nav-link" style="color:black ;">物種鑑定測驗</a></li>
+                                    <li class="nav-item"><a href="./ambulance.html" class="nav-link" style="color:black ;">救傷通報</a></li>
+
+                                    <li class="nav-item"><a href="./data.html" class="nav-link" style="color:black ;">資料查詢</a></li>
+                                    <li class="nav-item"><a href="./text.html" class="nav-link" style="color:black ;">訊息專區</a></li>
                                 </ul>
                             </div>
                             
@@ -97,7 +97,8 @@
 
         <div style="height: 100px;"></div>
 
-        <div class="mt-5 w-75">
+        <div class="d-flex justify-content-center">
+          <div class="mt-5 w-75 ">
 
             <div id="carouselExampleIndicators" class="carousel slide Width 75%" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -126,7 +127,24 @@
                 </button>
               </div>
         </div>
-        
+        </div>
+
+        <div class=" d-flex justify-content-evenly w-100 mt-3 mx-0" style="background-color: rgb(233, 220, 203);">
+          <div class="">
+            <p class="fs-4 fw-bold">收錄資料筆數</p>
+            <p class="text-center fs-3 text-primary">2134</p>
+          </div>
+          
+          <div class="">
+            <p class="fs-4 fw-bold">資料貢獻人數</p>
+            <p class="text-center fs-3 text-primary">351</p>
+          </div>
+
+          <div class="">
+            <p class="fs-4 fw-bold">救傷隻數</p>
+            <p class="text-center fs-3 text-primary">79</p>
+          </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
@@ -135,6 +153,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
     integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
     crossorigin="anonymous"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+
+    <script>
+      $('#go_sign_in').on('click',function(){
+        let data_to_server={
+          // 'account':$('#account').val(),
+          // 'password':$('#password').val()
+          
+        }
+        var a={}
+        alert (a)
+      })
+    </script>
 </body>
 
 </html>
