@@ -11,9 +11,13 @@
    
 
     <style>
+      
         body{
             background-color: antiquewhite;
             display: flex
+        }
+        .wait{
+          display: none;
         }
         .fixed-top>div {
             display: inline-block;
@@ -26,7 +30,7 @@
 </head>
 
 <body>
-    <div class="container-fluid px-0" >
+    <div class="container-fluid px-0 wait" >
         <div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
@@ -36,9 +40,9 @@
                 </div>
                 <div class="modal-body">
                     <label for="key_acount">帳號:</label>
-                    <input name="key_acount" id='account' type="text"><br><br>
+                    <input name="key_acount" id='account' type="text" name="ac"><br><br>
                     <label for="key_password" >密碼:</label>
-                    <input name="key_password" id="password" type="text">
+                    <input name="key_password" id="password" name= type="text">
                 </div>
                 <div class="modal-footer">
                   <a  href="./forget_password.html" type="button" class="btn btn-secondary" >忘記密碼</a>
@@ -47,7 +51,7 @@
               </div>
             </div>
           </div>
-        <div class=" row fixed-top" style="background-image:url(./image/header_bg.jpg) ;">
+        <div class=" row fixed-top" style="background-image:url(/static/img/header_bg.jpg) ;">
           
             <div class="d-flex justify-content-center col-12">
                 <div>
@@ -67,7 +71,7 @@
                 <button  class="unlogging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
                 <a href="./sign_up.html" class="unlogging btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
                 <button style="height: 35px;width: 35px;" class="navbar-toggler ms-3 ms-md-5  align-self-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                  <span ><img src="./image/list_grey.svg " style="height: 35px;width: 35px;"></span>
+                  <span ><img src="/static/img/list_grey.svg" style="height: 35px;width: 35px;"></span>
                 </button>
                 
             </div>
@@ -112,13 +116,13 @@
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="./image/01.jpg" class="d-block w-100" alt="...">
+                    <img src="/static/img/01.jpg" class="d-block w-100" alt="...">
                   </div>
                   <div class="carousel-item">
-                    <img src="./image/02.jpg" class="d-block w-100" alt="...">
+                    <img src="/static/img/02.jpg" class="d-block w-100" alt="...">
                   </div>
                   <div class="carousel-item">
-                    <img src="./image/03.jpg" class="d-block w-100" alt="...">
+                    <img src="/static/img/03.jpg" class="d-block w-100" alt="...">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -162,36 +166,48 @@
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
     
-    <script src="./account.js"></script>
+    
     <script>
+      $(document).ready(function(){
+        $('.wait').removeClass('wait')
+        
+      })
+
       
+
       if(sessionStorage.getItem('login_account')!=null){
         $('.unlogging').prop('hidden',true)
         $('.logging').prop('hidden',false)
       }
 
-      
-
-      $('#go_sign_in').on('click',function(){
+      $('#go_sign_in').on('click' ,async function(){
         let ac_input={
-           'account':$('#account').val(),
-           'password':$('#password').val()
-           }
-          console.log(ac_input.account)
-          console.log(ac_p[1].account)
-          for (let i = 0; i < ac_p.length; i++) {
-            if(ac_input.account==ac_p[i].account){
-              if(ac_input.password==ac_p[i].password){
-                alert('ok');
-                sessionStorage.setItem('login_account',ac_input.account);
-                location.reload();
-              } else {alert('密碼錯誤'); break}
-            }else if(ac_input.password!=ac_p[i].password &&i==ac_p.length-1){alert('無此帳號')}
-            
+           "account":$('#account').val(),
+           "password":$('#password').val()
+           };
+        let result=await $.ajax({
+          type:'post',
+          url:'/login',
+          data:ac_input,
+          success:function(info){
+            if (info=='ok'){
+              sessionStorage.setItem('login_account',ac_input.account);
+              location.reload();
+            } else if(data=='password_wrong'){
+              alert('密碼錯誤')
+            } else if(data=='account_wrong'){
+              alert('帳號錯誤')
+            } else{
+              alert('請重新整理')
+            }
           }
-        
-        
+          
+        }
+          
+        )
       })
+
+     
 
       $('#go_log_out').on('click',function(){
         // sessionStorage.setItem('login_account',null);
