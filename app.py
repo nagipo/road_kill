@@ -1,6 +1,6 @@
 import json
 import flask
-from flask import Flask, Request,jsonify
+from flask import Flask,jsonify
 from flask import render_template
 
 
@@ -35,7 +35,21 @@ def log_in():
        else:
          return(jsonify( 'account_wrong')) #判斷帳密是否正確
     
-    
+@app.route('/sign_up',methods=['post'])  
+def sign_up(): 
+   with open('road_kill/account_data.json','r') as a: 
+       a_info_d=json.load(fp=a)
+   data={
+           'account':flask.request.form["account"],
+           'password':flask.request.form["password"]
+       } 
+   if data['account'] in a_info_d:
+         return(jsonify( 'have_be_exsited'))
+   else:
+     a_info_d.update({data['account']:data['password']})
+     with open ('road_kill/account_data.json','w') as a:
+      json.dump(a_info_d,fp=a)
+     return(jsonify('ok'))
 
 if __name__=='__main__':
     app.run()
