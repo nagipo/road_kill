@@ -109,16 +109,16 @@
     
         <h3 class="ms-5">註冊</h3>
 
-        <div class="ms-5 mt-3" style="width: 50%;">
+        <form class="ms-5 mt-3" style="width: 50%;">
             <input id="account" type="text" class=" mb-2 form-control" placeholder="帳號" aria-label="帳號" aria-describedby="basic-addon1">
-            <input id="password" type="text" class="mb-2 form-control" placeholder="密碼" aria-label="密碼" aria-describedby="basic-addon1">
+            <input id="password_signup" type="text" class="mb-2 form-control" placeholder="密碼" aria-label="密碼" aria-describedby="basic-addon1">
             <input id="check_password" type="text" class="mb-2 form-control" placeholder="確認密碼" >
 
             <input id="email" type="text" class="mb-2 form-control" placeholder="email" >
 
             
-        </div>
-        <button id="commit" class="btn btn-secondary">提交</button>
+        </form>
+        <button id="commit"  class="ms-5 btn btn-secondary">提交</button>
        
 
        
@@ -162,9 +162,9 @@
             if (info=='ok'){
               sessionStorage.setItem('login_account',ac_input.account);
               location.reload();
-            } else if(data=='password_wrong'){
+            } else if(info=='password_wrong'){
               alert('密碼錯誤')
-            } else if(data=='account_wrong'){
+            } else if(info=='account_wrong'){
               alert('帳號錯誤')
             } else{
               alert('請重新整理')
@@ -184,26 +184,37 @@
       })
     </script>
     <script>
-        
-        $(document).ready(function(){
-            $('#check_password').keydown(function(){
-                
-            if($('#password').val()!=$('#check_password').val()){
-                $("#password").addClass("border-danger")
-                // alert('qq')
+        $('#commit').on('click', async function(){
+          // console.log($('#password_signup').val()=='')
+
+          if($('#check_password').val()!=$('#password_signup').val()){
+            $('#password_signup').addClass("border-danger");
             
-        }
+          } else if(($('#account').val()||$('#password_signup').val()||$('#check_password').val()||$('#email').val())=='') {
+            alert('請輸入完整資料')
+          } else if($('#email').val().includes('@,1')==false){
+            alert('請輸入正確email')
+          } else{
+            let result=await $.ajax({
+              type:'post',
+              url:'/sign_up',
+              data:{
+                'account':$('#account').val(),
+                'passeord':$('#password_signup').val(),
+                'email':$('#email').val()
+              },
+              success:function(info){
+                alert(info)
+              }
+            }
+              
+            )
+          }
+
         })
-        })
-        // $('#commit').on('click',function(){
-            
-        //      $('#password').addClass('border-danger')
-        // //     if($('#password').val()!=$('#check_password').val()){
-        // //        $('#password').addClass('border-danger')
-        // // }
-        // }) 
-     
-        
+
+
+             
         
         // $('#commit').on('click')
     </script>
