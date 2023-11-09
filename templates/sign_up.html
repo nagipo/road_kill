@@ -47,7 +47,7 @@
                     <input name="key_password" id="password" name= type="text">
                 </div>
                 <div class="modal-footer">
-                  <a  href="./forget_password.html" type="button" class="btn btn-secondary" >忘記密碼</a>
+                  <a  href="/forget_password" type="button" class="btn btn-secondary" >忘記密碼</a>
                   <button type="button" class="btn btn-warning" id="go_sign_in">確定</button>
                 </div>
               </div>
@@ -86,6 +86,7 @@
                         
                             <div class="collapse navbar-collapse m-0 pb-0 navbar-brand" id="navbarNav">
                                 <ul class="navbar-nav bg-warning  justify-content-center col-12" >
+                                    <li class="nav-item"><a href="/" class="nav-link be_disable" disabled style="color:black ;">首頁</a></li>
                                     <li class="nav-item"><a href="./upload.html" class="nav-link be_disable" disabled style="color:black ;">目擊目擊回報</a></li>
                                     <li class="nav-item"><a href="./identification.html" class="nav-link be_disable" disabled  style="color:black ;">物種鑑定</a></li>
                                     <li class="nav-item"><a href="./identification_test.html" class="nav-link be_disable" disabled  style="color:black ;">物種鑑定測驗</a></li>
@@ -105,12 +106,12 @@
            
         </div>
 
-        <div style="height: 100px;"></div>
+        <div style="height: 150px;"></div>
     
         <h3 class="ms-5">註冊</h3>
 
         <form class="ms-5 mt-3" style="width: 50%;">
-            <input id="account" type="text" class=" mb-2 form-control" placeholder="帳號" aria-label="帳號" aria-describedby="basic-addon1">
+            <input id="account_create" type="text" class=" mb-2 form-control" placeholder="帳號" aria-label="帳號" aria-describedby="basic-addon1">
             <input id="password_signup" type="text" class="mb-2 form-control" placeholder="密碼" aria-label="密碼" aria-describedby="basic-addon1">
             <input id="check_password" type="text" class="mb-2 form-control" placeholder="確認密碼" >
 
@@ -150,6 +151,7 @@
       }
 
       $('#go_sign_in').on('click' ,async function(){
+        
         let ac_input={
            "account":$('#account').val(),
            "password":$('#password').val()
@@ -192,19 +194,19 @@
             
           } else if(($('#account').val()||$('#password_signup').val()||$('#check_password').val()||$('#email').val())=='') {
             alert('請輸入完整資料')
-          } else if($('#email').val().includes('@,1')==false){
+          } else if($('#email').val().includes('@,1')){
             alert('請輸入正確email')
           } else{
             let result=await $.ajax({
               type:'post',
               url:'/sign_up',
               data:{
-                'account':$('#account').val(),
-                'passeord':$('#password_signup').val(),
+                'account':$('#account_create').val(),
+                'password':$('#password_signup').val(),
                 'email':$('#email').val()
               },
               success:function(info){
-                alert(info)
+                window.location='/'
               }
             }
               

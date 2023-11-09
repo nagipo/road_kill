@@ -18,15 +18,29 @@ mydb = mysql.connector.connect(
 )
 print(mydb)
 mycursor = mydb.cursor()
-mycursor.execute("SELECT account,password_user FROM account")
+mycursor.execute("SELECT account,password_user,email FROM account")
 myresult = mycursor.fetchall() 
-print(myresult)  
-a_info_d=dict()
-for i in myresult:
-  a_info_d[i[0]]=i[1]  
+print(myresult)
+data={
+  'account':'bee',
+  'password':'b123',
+  'email':'b@gmail.com'
+} 
+
+sql = "INSERT INTO account (account, password_user,email) VALUES (%s, %s,%s)"
+val = (data['account'], data['password'],data['email'])
+mycursor.execute(sql,val)
+mydb.commit()
+# for i in myresult:
+#   if data['account'] ==i[0]  :
+#     print('x')
+#     break
+#   else:
+#     print('ok')
+    
   
       
-print(a_info_d)  
+ 
 
  
 

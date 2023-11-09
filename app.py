@@ -1,8 +1,12 @@
-import json
+import random
 import flask
 import mysql.connector
-from flask import Flask,jsonify
-from flask import render_template
+from flask import Flask,jsonify,render_template
+import smtplib
+smtp=smtplib.SMTP('smtp.gmail.com', 587)
+smtp.ehlo()
+smtp.starttls()
+smtp.login('ericpo2206@gmail.com','opwu kkin yfvf hspg')
 
 
 app = Flask(__name__,static_folder='static')
@@ -53,23 +57,63 @@ def log_in():
 def sign_up(): 
    if flask.request.method=='POST':
          
-        a_info_d=
+        mycursor.execute("SELECT account,password_user FROM account")
+        myresult = mycursor.fetchall() 
+    
+        a_info_d={} 
+        for i in myresult:
+          a_info_d[i[0]]=i[1]
         data={
            'account':flask.request.form["account"],
-           'password':flask.request.form["password"]
+           'email':flask.request.form["email"]
         } 
-        if data['account'] in a_info_d:
-         return(jsonify( 'have_be_exsited'))
-        else:
-            a_info_d.update({data['account']:data['password']})
-            with open ('road_kill/account_data.json','w') as a:
-                json.dump(a_info_d,fp=a)
-                return(jsonify('ok'))
+        
+        for i in myresult:
+            if data['account'] ==i[0]  :
+                return(jsonify( 'have_be_exsited'))
+                
+            else:
+                sql = "INSERT INTO account (account, password_user,email) VALUES (%s, %s,%s)"
+                val = (data['account'], data['password'],data['email'])
+                mycursor.execute(sql,val)
+                mydb.commit()
+                
+                return(jsonify( 'ok'))
+                
+        
 
    elif flask.request.method=='GET':
         
         return render_template('sign_up.html')
         
+@app.route('/forget_password',methods=['get','post']) 
+def forget_password():
+    if flask.request.method=='GET':
+        return render_template('forget_password.html')
+    elif flask.request.method=='POST':
+        data={
+           'account':flask.request.form["account"],
+           'email':flask.request.form["email"]
+        }
+        print(data)
+        new_password=str(random.randint(1000,9999))
+        from_addr='ericpo2206@gmail.com'
+        to_addr=data['email']
+        msg=f"Subject:your ne password\n{new_password}"
+        status=smtp.sendmail(from_addr, to_addr, msg)#加密文件，避免私密信息被截取
+        if status=={}:
+            print("郵件傳送成功!")
+        else:
+            print("郵件傳送失敗!")
+        smtp.quit()
+        sql="UPDATE account SET password_user='"+new_password+"'WHERE account='"+data["account"]+"'"
+        print(sql)
+        mycursor.execute(sql)
+        mydb.commit()
+        return jsonify( 'ok')
+        # UPDATE account SET email='a@hotmail.com' WHERE account='apple'
+        
+    
 
 if __name__=='__main__':
     app.debug = True
