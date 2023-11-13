@@ -120,6 +120,7 @@ def upload():
   elif flask.request.method=='POST':
      data={
            'file':flask.request.files['file'],
+           'account_id':flask.request.form['account_id'],
            'sp_name':flask.request.form["sp_name"],
            'time':flask.request.form["time"],
            'locationlocation':flask.request.form["location"]
@@ -127,8 +128,49 @@ def upload():
         }
     #  file=flask.request.files['file']
     #  print(data)
-     sql='INSERT INTO '     
+     search="SELECT account_id FROM `account` WHERE account='"+data['account_id']+"'"
+     mycursor.execute(search)
+     myresult = mycursor.fetchall()
+    #  print(myresult)
+     
+     sql='INSERT INTO upload( `upload_img`, `account_id`, `identifi`,  `location`) VALUES (%s,%s,%s,%s)'  
+     val= (data['file'].read(),myresult[0][0],data['sp_name'],data['locationlocation'])  
+     mycursor.execute(sql,val)
+     mydb.commit()
      return jsonify( 'ok')
+   
+   
+@app.route('/identi',methods=['get','post'])   
+def identi():
+  if flask.request.method=='GET':
+    return render_template('identi.html')
+  elif flask.request.method=='POST':
+    return
+  
+@app.route('/identi/table',methods=['get']) 
+def identi_table():
+  search="SELECT upload_id,identifi,location FROM `upload` WHERE challenge is null"
+  mycursor.execute(search)
+  myresult = mycursor.fetchall()
+  if len(myresult)<=5:
+    res=[]
+    for i in range(len(myresult)):
+      res.append({
+        'upload_id':myresult[i-1][0],
+        'identifi':myresult[i-1][1],
+        'location':myresult[i-1][2]
+        })
+  else:
+    re_sample= random.sample(myresult,k=5)
+    for i in range(len(re_sample)):
+      res.append({
+        'upload_id':re_sample[i-1][0],
+        'identifi':re_sample[i-1][1],
+        'location':re_sample[i-1][2]
+        })
+  return jsonify(res)
+  
+  
 
 if __name__=='__main__':
     app.debug = True

@@ -1,3 +1,4 @@
+import random
 import mysql.connector
 mydb = mysql.connector.connect(
   host="localhost",
@@ -6,13 +7,29 @@ mydb = mysql.connector.connect(
   database="lab_wild"
 )
 mycursor = mydb.cursor()
-
-with open('test.jpg','rb') as f:
-    image = f.read()
+# data={'account_id':'bee'}
+# search="SELECT account_id FROM `account` WHERE account='"+data['account_id']+"'"
+# mycursor.execute(search)
+# myresult = mycursor.fetchall()
+# print(myresult[0][0])
+search="SELECT upload_id,identifi,location FROM `upload` WHERE challenge is null"
+mycursor.execute(search)
+myresult = mycursor.fetchall()
+res=[]
+if len(myresult)<=5:
     
-sql="INSERT INTO upload(upload_img,account_id,identifi) VALUES(%s,1,'Muntiacus reevesi')"
-val=[image]
-
-
-mycursor.execute(sql,val)
-mydb.commit()
+    for i in range(len(myresult)):
+      res.append({
+        'upload_id':myresult[i-1][0],
+        'identifi':myresult[i-1][1],
+        'location':myresult[i-1][2]
+        })
+else:
+    re_sample= random.sample(myresult,k=5)
+    for i in range(len(re_sample)):
+      res.append({
+        'upload_id':re_sample[i-1][0],
+        'identifi':re_sample[i-1][1],
+        'location':re_sample[i-1][2]
+        })
+    print(res)
