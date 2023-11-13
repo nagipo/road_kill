@@ -113,8 +113,24 @@ def forget_password():
         return jsonify( 'ok')
         # UPDATE account SET email='a@hotmail.com' WHERE account='apple'
         
-    
+@app.route('/upload',methods=['get','post'])
+def upload():
+  if  flask.request.method=='GET': 
+      return render_template('upload.html')
+  elif flask.request.method=='POST':
+     data={
+           'file':flask.request.files['file'],
+           'sp_name':flask.request.form["sp_name"],
+           'time':flask.request.form["time"],
+           'locationlocation':flask.request.form["location"]
+           
+        }
+    #  file=flask.request.files['file']
+    #  print(data)
+     sql='INSERT INTO '     
+     return jsonify( 'ok')
 
 if __name__=='__main__':
     app.debug = True
+    app.config['MAX_CONTENT_LENGTH']=100*1024*1024
     app.run()
