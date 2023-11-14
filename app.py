@@ -1,4 +1,5 @@
 import random
+import os
 import flask
 import mysql.connector
 from flask import Flask,jsonify,render_template
@@ -65,7 +66,8 @@ def sign_up():
           a_info_d[i[0]]=i[1]
         data={
            'account':flask.request.form["account"],
-           'email':flask.request.form["email"]
+           'email':flask.request.form["email"],
+           'password':flask.request.form["password"]
         } 
         
         for i in myresult:
@@ -145,7 +147,14 @@ def identi():
   if flask.request.method=='GET':
     return render_template('identi.html')
   elif flask.request.method=='POST':
-    return
+    data={'challenge':flask.request.form['challenge'],
+          'upload_id':flask.request.form['upload_id']}
+    print(data)
+    sql='UPDATE upload SET challenge=%s WHERE upload_id=%s'  
+    val= (data['challenge'],data['upload_id'])
+    mycursor.execute(sql,val)
+    mydb.commit()
+    return jsonify( 'ok')
   
 @app.route('/identi/table',methods=['get']) 
 def identi_table():
@@ -169,6 +178,31 @@ def identi_table():
         'location':re_sample[i-1][2]
         })
   return jsonify(res)
+
+@app.route('/identi/img',methods=['post'])
+def identi_img():
+  data={'upload_id':flask.request.form['upload_id']}
+  print(data)
+  search="SELECT upload_img,identifi FROM `upload` WHERE upload_id='"+data['upload_id']+"'"
+  mycursor.execute(search)
+  myresult = mycursor.fetchall()
+  # print(myresult)
+  upload_id=data['upload_id']
+  res={'photo':f'/static/img/output/{upload_id}.jpg',
+       'identi':myresult[0][1]
+       }
+  
+  with open(f'road_kill/static/img/output/{ upload_id}.jpg',"+bw")as f:
+    f.write(myresult[0][0])
+  
+  return jsonify(res)
+  
+
+@app.route('/ambulance',methods=['get']) 
+def ambulance():
+  return render_template('ambulance.html')
+  
+ 
   
   
 

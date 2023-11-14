@@ -88,13 +88,13 @@
                             <div class="collapse navbar-collapse m-0 pb-0 navbar-brand" id="navbarNav">
                                 <ul class="navbar-nav bg-warning  justify-content-center col-12" >
                                   <li class="nav-item"><a href="/" class="nav-link be_disable" disabled style="color:black ;">首頁</a></li>
-                                    <li class="nav-item"><a href="./upload.html" class="nav-link be_disable" disabled style="color:black ;">目擊目擊回報</a></li>
-                                    <li class="nav-item"><a href="./identification.html" class="nav-link be_disable" disabled  style="color:black ;">物種鑑定</a></li>
-                                    <li class="nav-item"><a href="./identification_test.html" class="nav-link be_disable" disabled  style="color:black ;">物種鑑定測驗</a></li>
-                                    <li class="nav-item"><a href="./ambulance.html" class="nav-link" style="color:black ;">救傷通報</a></li>
+                                    <li class="nav-item"><a href="/upload" class="nav-link be_disable" disabled style="color:black ;">目擊目擊回報</a></li>
+                                    <li class="nav-item"><a href="/identi" class="nav-link be_disable" disabled  style="color:black ;">物種鑑定</a></li>
+                                    <!-- <li class="nav-item"><a href="./identification_test.html" class="nav-link be_disable" disabled  style="color:black ;">物種鑑定測驗</a></li> -->
+                                    <li class="nav-item"><a href="/ambulance" class="nav-link" style="color:black ;">救傷通報</a></li>
 
-                                    <li class="nav-item"><a href="./data.html" class="nav-link" style="color:black ;">資料查詢</a></li>
-                                    <li class="nav-item"><a href="./text.html" class="nav-link" style="color:black ;">訊息專區</a></li>
+                                    <!-- <li class="nav-item"><a href="./data.html" class="nav-link" style="color:black ;">資料查詢</a></li>
+                                    <li class="nav-item"><a href="./text.html" class="nav-link" style="color:black ;">訊息專區</a></li> -->
                                 </ul>
                             </div>
                             
@@ -114,23 +114,23 @@
         <div style="height: 150px;"></div>
         
         <div  class="modal fade" id="identi" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-md">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="sign_in">鑑定</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body ">
-                   <img src="./image/01.jpg" style="object-fit: contain; width:80%; margin-left :10%;" alt="">
-                    <div class="mt-3" style="margin-left :35%">
-                    <p class="h4">初判:</p>
+                   <img id="identi_img" src="" style="object-fit: contain; width:50%; margin-left :25%;" alt="">
+                    <div class="mt-3" style="margin-left :10%">
+                    <p id="first_identi" class="h4">初判:</p>
                     <label class="h4" for="challenge" >鑑定:</label>
                     <input name="challenge" id="challenge"  type="text">
                     </div>
                 </div>
                 <div class="modal-footer">
                   
-                  <button type="button" class="btn btn-warning" id="go_sign_in">提交</button>
+                  <button type="button" class="btn btn-warning" id="identi_sub">提交</button>
                 </div>
               </div>
             </div>
@@ -150,32 +150,32 @@
                   <tr>
                     <th scope="row">1</th>
                     <td class="sp_name">Eutropis multifasciata</td>
-                    <td>台中市</td>
-                    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td class="location">台中市</td>
+                    <td class="td_b"><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td></td>
-                    <td></td>
-                    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td class="sp_name"></td>
+                    <td class="location"></td>
+                    <td><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
-                    <td></td>
-                    <td></td>
-                    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td class="sp_name"></td>
+                    <td class="location"></td>
+                    <td><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
-                    <td></td>
-                    <td></td>
-                    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td class="sp_name"></td>
+                    <td class="location"></td>
+                    <td><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>
-                    <td></td>
-                    <td></td>
-                    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td class="sp_name"></td>
+                    <td class="location"></td>
+                    <td><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -247,11 +247,58 @@
     </script>
 
     <script>
+      var id_identi
       $.get(
         '/identi/table',function(info){
           console.log(info)
+          var tb_data=info
+          console.log(tb_data.upload_id)
+          for (let i=0;i<tb_data.length;i++){
+        $(`tr:nth-child(${i+1})>.sp_name`).text(tb_data[i].identifi);
+        $(`tr:nth-child(${i+1})>.location`).text(tb_data[i].location);
+        $(`tr:nth-child(${i+1})>.td_b>.b`).prop('id',`uid_${tb_data[i].upload_id}`)
+      }
         }
       )
+      
+      $('.b').on('click',function(){
+        console.log($(this).prop('id').slice(4))
+        id_identi=$(this).prop('id').slice(4)
+        let to_server={'upload_id':$(this).prop('id').slice(4)}
+        $.ajax({
+          type:'post',
+          url:'/identi/img',
+          data:to_server,
+          success:function(info){
+            
+            console.log(info)
+            $('#identi_img').prop('src',info.photo)
+            
+            $('#first_identi').text(`初判:${info.identi}`)
+            
+            
+          }
+        })
+      })
+
+      $('#identi_sub').on('click',function(){
+        let to_server_i={
+          'challenge':$('#challenge').val(),
+          'upload_id':id_identi
+      }
+        $.ajax({
+          type:'post',
+          url:'/identi',
+          data:to_server_i,
+          success:function(info){
+            alert(info)
+            location.reload()
+          }
+
+          
+        })
+      })
+      
     </script>
 </body>
 

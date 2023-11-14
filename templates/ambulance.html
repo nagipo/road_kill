@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>救傷通報</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+   
 
     <style>
+      
         body{
             background-color: antiquewhite;
             display: flex
+        }
+        .wait{
+          display: none;
         }
         .fixed-top>div {
             display: inline-block;
@@ -18,82 +25,203 @@
         #navbarNav>ul>li:hover{
             background-color: rgb(212, 186, 16);
         }
+        
     </style>
 </head>
+
 <body>
-    <div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">登入</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label for="key_acount">帳號:</label>
-                <input name="key_acount" type="text"><br><br>
-                <label for="key_password">密碼:</label>
-                <input name="key_password" type="text">
-            </div>
-            <div class="modal-footer">
-              <a  href="./forget_password.html" type="button" class="btn btn-secondary" >忘記密碼</a>
-              <button type="button" class="btn btn-warning">確定</button>
+    <div class="container-fluid px-0 wait" >
+        <div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="sign_in">登入</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="key_acount">帳號:</label>
+                    <input name="key_acount" id='account' type="text" name="ac"><br><br>
+                    <label for="key_password" >密碼:</label>
+                    <input name="key_password" id="password" name= type="text">
+                </div>
+                <div class="modal-footer">
+                  <a  href="/forget_password" type="button" class="btn btn-secondary" >忘記密碼</a>
+                  <button type="button" class="btn btn-warning" id="go_sign_in">確定</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    <div class=" row fixed-top" style="background-image:url(./image/header_bg.jpg) ;">
-        <div class="d-flex justify-content-center col-12">
-            <div>
-                <a href="./index.html" class="text-decoration-none text-light text-center">
-                    <span class="h1 d-block ">陸域野生動物目擊回報</span>
-                    
-                </a>
-
-            </div>
-            <div class="align-self-center ms-5">
-                <input type="text"  placeholder="搜尋" class="form-control">
-
-            </div>
-            <button  class="btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
-            <a href="./sign_up.html" class="btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
-            <button style="height: 35px;width: 35px;" class="navbar-toggler ms-3 ms-md-5  align-self-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-              <span ><img src="./image/list_grey.svg " style="height: 35px;width: 35px;"></span>
-            </button>
-            
-        </div>
-        <div class="container">
-           
-            <nav class="navbar navbar-expand-lg navbar-dark pb-0">
-                <div class="container-fluid p-0">
-                    
-                    
-                    
-                        <div class="collapse navbar-collapse m-0 pb-0 navbar-brand" id="navbarNav">
-                            <ul class="navbar-nav bg-warning  justify-content-center col-12" >
-                                <li class="nav-item"><a href="./index.html" class="nav-link " style="color:black ;">首頁</a></li>
-                                <li class="nav-item"><a href="./upload.html" class="nav-link " style="color:black ;">目擊目擊回報</a></li>
-                                <li class="nav-item"><a href="./identification.html" class="nav-link" style="color:black ;">物種鑑定</a></li>
-                                <li class="nav-item"><a href="./identification_test.html" class="nav-link" style="color:black ;">物種鑑定測驗</a></li>
-                                <li class="nav-item"><a href="./ambulance.html" class="nav-link" style="color:black ;">救傷通報</a></li>
-
-                                <li class="nav-item"><a href="./data.html" class="nav-link" style="color:black ;">資料查詢</a></li>
-                                <li class="nav-item"><a href="./text.html" class="nav-link" style="color:black ;">訊息專區</a></li>
-                            </ul>
-                        </div>
+        <div class=" row fixed-top" style="background-image:url(/static/img/header_bg.jpg) ;">
+          
+            <div class="d-flex justify-content-center col-12">
+                <div>
+                    <a href="/" class="text-decoration-none text-light text-center">
+                        <span class="h1 d-block ">陸域野生動物目擊回報</span>
                         
+                    </a>
+    
                 </div>
+                <div class="align-self-center ms-5">
+                    <input type="text"  placeholder="搜尋" class="form-control">
+
+                </div>
+                <button hidden id="go_log_out" class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px"  >登出</button>
+                <a href="" hidden class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" >關於我</a>
+
+                <button  class="unlogging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
+                <a href="/sign_up" id="sign_up" class="unlogging btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
+                <button style="height: 35px;width: 35px;" class="navbar-toggler ms-3 ms-md-5  align-self-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span ><img src="/static/img/list_grey.svg" style="height: 35px;width: 35px;"></span>
+                </button>
                 
-            </nav>
+            </div>
+            <div class="container">
+               
+                <nav class="navbar navbar-expand-lg navbar-dark pb-0">
+                    <div class="container-fluid p-0">
+                        
+                        
+                        
+                            <div class="collapse navbar-collapse m-0 pb-0 navbar-brand" id="navbarNav">
+                                <ul class="navbar-nav bg-warning  justify-content-center col-12" >
+                                  <li class="nav-item"><a href="/" class="nav-link be_disable" disabled style="color:black ;">首頁</a></li>
+                                    <li class="nav-item"><a href="/upload" class="nav-link be_disable" disabled style="color:black ;">目擊目擊回報</a></li>
+                                    <li class="nav-item"><a href="/identi" class="nav-link be_disable" disabled  style="color:black ;">物種鑑定</a></li>
+                                    
+                                    <li class="nav-item"><a href="/ambulance" class="nav-link" style="color:black ;">救傷通報</a></li>
+
+                                    <!-- <li class="nav-item"><a href="./data.html" class="nav-link" style="color:black ;">資料查詢</a></li>
+                                    <li class="nav-item"><a href="./text.html" class="nav-link" style="color:black ;">訊息專區</a></li> -->
+                                </ul>
+                            </div>
+                            
+                    </div>
+                    
+                </nav>
+               
+            </div>
+           
            
         </div>
-       
-       
+
+        <div style="height: 150px;"></div>
+
+        <div class="d-flex justify-content-center">
+            <table class="table" style="width: 70%; background-color: aliceblue;">
+                <thead>
+                  <tr>
+                    <th scope="col">單位名稱</th>
+                    <th scope="col">地址</th>
+                    <th scope="col">連絡電話</th>
+                    <th scope="col">網站</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">臺北市立動物園</th>
+                    <td>臺北市文山區新光路2段30號</td>
+                    <td>02-29382300</td>
+                    <td><a class="btn" href="https://www.zoo.gov.taipei/">前往</a></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">國立屏東科技大學保育類野生動物收容中心</th>
+                    <td>屏東縣內埔鄉學府路1號</td>
+                    <td>08-7740413</td>
+                    <td><a class="btn" href="https://ptrc.npust.edu.tw/">前往</a></td>
+
+                  </tr>
+                  <tr>
+                    <th scope="row">農業部生物多樣性研究所</th>
+                    <td >南投縣集集鎮民生東路1號</td>
+                    <td>049-2761331 #309</td>
+                    <td><a class="btn" href="https://www.tbri.gov.tw/WRRC">前往</a></td>
+
+                  </tr>
+                  <tr>
+                    <th scope="row">野灣非營利野生動物醫院</th>
+                    <td >臺東縣池上鄉新興村新興126號</td>
+                    <td>089-862368<br>0972-799053</td>
+                    <td><a class="btn" href="https://www.wildonetaiwan.org/">前往</a></td>
+
+                  </tr>
+                  <tr>
+                    <th scope="row">金門縣野生動物救傷站</th>
+                    <td >金門縣金湖鎮南雄30號</td>
+                    <td>082-333587</td>
+                    <td><a class="btn" href="https://www.facebook.com/KWRCA/?locale=zh_TW">前往</a></td>
+
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+        
+
+        
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
     integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
     crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
     integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
     crossorigin="anonymous"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+    
+    
+    <script> //通用
+      $(document).ready(function(){
+        $('.wait').removeClass('wait')
+        
+      })
+
+      
+
+      if(sessionStorage.getItem('login_account')!=null){
+        $('.unlogging').prop('hidden',true)
+        $('.logging').prop('hidden',false)
+        $('.be_disable').prop('disabled',false)
+      }
+
+      $('#go_sign_in').on('click' ,async function(){
+        let ac_input={
+           "account":$('#account').val(),
+           "password":$('#password').val()
+           };
+        let result=await $.ajax({
+          type:'post',
+          url:'/login',
+          data:ac_input,
+          success:function(info){
+            if (info=='ok'){
+              sessionStorage.setItem('login_account',ac_input.account);
+              location.reload();
+            } else if(data=='password_wrong'){
+              alert('密碼錯誤')
+            } else if(data=='account_wrong'){
+              alert('帳號錯誤')
+            } else{
+              alert('請重新整理')
+            }
+          }
+          
+        }
+          
+        )
+      })
+
+      
+
+      $('#go_log_out').on('click',function(){
+        // sessionStorage.setItem('login_account',null);
+        sessionStorage.clear();
+        location.reload();
+        
+      })
+    </script>
 </body>
+
 </html>
