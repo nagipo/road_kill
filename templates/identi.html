@@ -69,7 +69,7 @@
 
                 </div>
                 <button hidden id="go_log_out" class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px"  >登出</button>
-                <a href="" hidden class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" >關於我</a>
+                <button id="about_me" hidden class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" ></button>
 
                 <button  class="unlogging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
                 <a href="/sign_up" id="sign_up" class="unlogging btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
@@ -151,31 +151,31 @@
                     <th scope="row">1</th>
                     <td class="sp_name">Eutropis multifasciata</td>
                     <td class="location">台中市</td>
-                    <td class="td_b"><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td class="td_b"><button disabled id="b1" class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td class="sp_name"></td>
                     <td class="location"></td>
-                    <td><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td><button disabled id="b2" class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
                     <td class="sp_name"></td>
                     <td class="location"></td>
-                    <td><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td><button disabled id="b3" class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
                     <td class="sp_name"></td>
                     <td class="location"></td>
-                    <td><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td><button disabled id="b4" class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>
                     <td class="sp_name"></td>
                     <td class="location"></td>
-                    <td><button class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
+                    <td><button disabled id="b5" class="b btn btn-primary" data-bs-toggle="modal" data-bs-target="#identi">鑑定</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -236,7 +236,7 @@
         )
       })
 
-      
+      $('#about_me' ).text(sessionStorage.getItem('login_account'))
 
       $('#go_log_out').on('click',function(){
         // sessionStorage.setItem('login_account',null);
@@ -247,6 +247,8 @@
     </script>
 
     <script>
+      // if($('.b').prop('id'))
+      console.log($('.b').prop('id').slice(0,1))
       var id_identi
       $.get(
         '/identi/table',function(info){
@@ -256,10 +258,12 @@
           for (let i=0;i<tb_data.length;i++){
         $(`tr:nth-child(${i+1})>.sp_name`).text(tb_data[i].identifi);
         $(`tr:nth-child(${i+1})>.location`).text(tb_data[i].location);
-        $(`tr:nth-child(${i+1})>.td_b>.b`).prop('id',`uid_${tb_data[i].upload_id}`)
+        $(`#b${i+1}`).prop('disabled',false)
+        $(`#b${i+1}`).prop('id',`uid_${tb_data[i].upload_id}`)
       }
         }
       )
+      
       
       $('.b').on('click',function(){
         console.log($(this).prop('id').slice(4))

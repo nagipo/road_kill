@@ -66,7 +66,7 @@
 
                 </div>
                 <button hidden id="go_log_out" class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px"  >登出</button>
-                <a href="" hidden class="logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" >關於我</a>
+                <button id="about_me" hidden class=" logging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" ></button>
 
                 <button  class="unlogging btn btn-dark  ms-3  align-self-center text-nowrap" style="height: 35px; width:70px" data-bs-toggle="modal" data-bs-target="#exampleModal">登入</button>
                 <a href="/sign_up" id="sign_up" class="unlogging btn btn-dark ms-2 align-self-center text-nowrap" style="height: 35px; width:70px">註冊</a>
@@ -217,7 +217,7 @@
         )
       })
 
-      
+      $('#about_me' ).text(sessionStorage.getItem('login_account'))
 
       $('#go_log_out').on('click',function(){
         // sessionStorage.setItem('login_account',null);
