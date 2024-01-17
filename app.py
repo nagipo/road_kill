@@ -7,7 +7,7 @@ import smtplib
 smtp=smtplib.SMTP('smtp.gmail.com', 587)
 smtp.ehlo()
 smtp.starttls()
-smtp.login('ericpo2206@gmail.com','opwu kkin yfvf hspg')
+smtp.login('ericpo2206@gmail.com','')
 
 
 app = Flask(__name__,static_folder='static')
@@ -101,7 +101,7 @@ def forget_password():
         new_password=str(random.randint(1000,9999))
         from_addr='ericpo2206@gmail.com'
         to_addr=data['email']
-        msg=f"Subject:your ne password\n{new_password}"
+        msg=f"Subject:your password\n{new_password}"
         status=smtp.sendmail(from_addr, to_addr, msg)#加密文件，避免私密信息被截取
         if status=={}:
             print("郵件傳送成功!")
